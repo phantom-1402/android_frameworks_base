@@ -1,0 +1,26 @@
+create table IOT_SUP42(
+scode varchar2(4) primary key check(scode like 'S%'),
+sname varchar2(15) not null,
+scity varchar2(20),
+rating number(4,1) not null,
+age number(2) check(age<=60));
+
+
+create table IOT_PARTS42(
+pcode varchar2(4) primary key check(pcode like 'P%'),
+pname varchar2(10) not null,
+pcity varchar2(20),
+color varchar2(10) not null,
+weight number(5)); 
+
+desc IOT_SUP42;
+desc IOT_PARTS42;
+
+
+create table IOT_SP42(
+scode varchar2(4) REFERENCES IOT_SUP42,
+pcode varchar2(4) REFERENCES IOT_PARTS42,
+qty number(4) not null,
+primary key(scode,pcode));
+
+SET AUTOCOMMIT ON
